@@ -1,103 +1,101 @@
-import Image from "next/image";
+import HomeCard from "@/components/home-card";
+import { HomeGemini } from "@/components/home-gemini";
+import HomeHeader from "@/components/home-header";
+import HomeMap from "@/components/home-map";
+import HomeTitle from "@/components/home-title";
+import Timeline from "@/components/timeline";
+import getSvgMap from "@/lib/world-svg-map";
+import { Bot, Dumbbell, Newspaper, User2 } from "lucide-react";
+import person1 from "@/../public/people/person1.jpg";
+import person2 from "@/../public/people/person2.jpg";
+import person3 from "@/../public/people/person3.jpg";
+import person4 from "@/../public/people/person4.jpg";
+import { Testimonial } from "@/components/ui/animated-testimonials";
+import { HomeTestimonials } from "@/components/home-testimonials";
+import HomePricing from "@/components/home-pricing";
+const cards = [
+  {
+    title: "Register",
+    description:
+      "Register to get access to all the features of our platform, and become a part of our community.",
+    href: "/auth/signin",
+    icon: <User2 size={64} className="w-full mx-auto" />,
+  },
+  {
+    title: "Read Posts",
+    description:
+      "Read posts to gain knowledge and insights about different topics written by professionals.",
+    href: "/posts/approved",
+    icon: <Newspaper size={64} className="w-full mx-auto" />,
+  },
+  {
+    title: "Buy Trainings",
+    description:
+      "Buy trainings to improve get the full experience of our platform. We offer a wide range of trainings.",
+    href: "/trainings/approved",
+    icon: <Dumbbell size={64} className="w-full mx-auto" />,
+  },
+  {
+    title: "Chat With Your Bro",
+    description:
+      "Engage in discussions with the most advanced AI regarding your health and fitness.",
+    href: "/trainings/approved",
+    icon: <Bot size={64} className="w-full mx-auto" />,
+  },
+];
+
+const testimonials: Testimonial[] = [
+  {
+    quote:
+      "The training plans have completly redefined the standard for training. I feel more energetic and healthier than ever before.",
+    name: "Sarah Chen",
+    pleasure: "Passionate about jogging and exploring new trails",
+    src: person1,
+  },
+  {
+    quote:
+      "The olans are easy to follow and the trainers are always there to help. I love the community and also the AI is very useful.",
+    name: "Andrei Popescu",
+    pleasure: "Loves cooking and experimenting with new flavors",
+    src: person2,
+  },
+  {
+    quote:
+      "GymBroski has transformed my fitness journey. The personalized training plans and nutritional advice have made a world of difference.",
+    name: "Marcus Johnson",
+    pleasure: "Enjoys weightlifting and meal prepping",
+    src: person3,
+  },
+  {
+    quote:
+      "The AI is a game-changer! It provides real-time feedback and keeps me motivated. I can't imagine my fitness journey without it.",
+    name: "Jabbad Dutt",
+    pleasure: "Avid cyclist and outdoor enthusiast",
+    src: person4,
+  },
+];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="space-y-10 md:space-y-16">
+      <HomeHeader />
+      <div className="flex flex-wrap items-center justify-center gap-10 mt-15 overflow-hidden">
+        {cards.map((item, i) => (
+          <HomeCard key={i} index={i} {...item} />
+        ))}
+      </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      <HomeTitle />
+
+      <Timeline />
+
+      <HomeMap svgMap={getSvgMap()} />
+
+      <HomeGemini />
+
+      <HomeTestimonials testimonials={testimonials} />
+
+      <HomePricing />
+    </main>
   );
 }
