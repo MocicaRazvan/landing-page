@@ -29,7 +29,7 @@ export default function Nav() {
             className="hover:underline hover:underline-offset-2 text-lg font-semibold text-primary hover:scale-[1.035] transition-all duration-150"
             target="_blank"
           >
-            Buisness Fundation
+            Business Foundation
           </Link>
           <Link
             href={
